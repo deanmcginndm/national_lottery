@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Dean McGinn">
+    <title>National Lottery - Dean McGinn</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+
+
+
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{{ url_for('home') }}">National Lottery</a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('play') }}">Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('code') }}">Code Page</a>
+            </li>
+              <li class="nav-item">
+                  <span class="nav-link" id="date_time"></span>
+              </li>
+          </ul>
+
+            <script type="text/javascript">;</script>
+          <form class="form-inline mt-2 mt-md-0" method="get" action="http://www.google.co.uk/search?hl=en-GB&source=hp&q=">
+            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Google Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+
+      <div class="container" style="margin-top:0px;">
+          <div class="jumbotron">
+           <h1 class="mt-5 display-4">Welcome to the National Lottery!</h1>
+              <hr>
+            <p class="lead">This website is designed with the purpose of a test for an interview.</p>
+            <p>Please see the instructions below on how to get started:</p>
+            <ol>
+                <li>Seven numbers will be selected at random, 6 lottery balls <del>and 1 bonus lottery ball.</del> (Coming soon!)</li>
+                <li>The winning numbers are selected at random, like your numbers, each round.</li>
+                <li>For information about prizes, please view the prizes page.</li>
+                <li><del>To collect your winnings, please ensure you create an account and validate your age and up-to-date bank details. Remember, we can't pay your winnings without these details being registered!</del> (Coming soon!)</li>
+            </ol>
+          </div>
+
+        <ul>
+          <li class="num-list">
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">1</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">2</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">3</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">4</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">5</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">6</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">7</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">8</h2></span></span>
+            <span class="dot grey"><span class="inner-dot" style=""><h2 style="">9</h2></span></span>
+          </li>
+          <li class="num-list">
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">10</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">11</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">12</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">13</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">14</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">15</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">16</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">17</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">18</h2></span></span>
+            <span class="dot blue"><span class="inner-dot" style=""><h2 style="">19</h2></span></span>
+          </li>
+          <li class="num-list">
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">20</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">21</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">22</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">23</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">24</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">25</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">26</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">27</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">28</h2></span></span>
+            <span class="dot pink"><span class="inner-dot" style=""><h2 style="">29</h2></span></span>
+          </li>
+          <li class="num-list">
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">30</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">31</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">32</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">33</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">34</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">35</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">36</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">37</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">38</h2></span></span>
+            <span class="dot green"><span class="inner-dot" style=""><h2 style="">39</h2></span></span>
+          </li>
+          <li class="num-list">
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">40</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">41</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">42</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">43</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">44</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">45</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">46</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">47</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">48</h2></span></span>
+            <span class="dot yellow"><span class="inner-dot" style=""><h2 style="">49</h2></span></span>
+          </li>
+        </ul>
+
+      </div>
+
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Designed by Dean McGinn</span>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      function d_log(s) {
+        var ev = document.createEvent('events');
+        ev.initEvent('heartbeat_log', true, false);
+        document.body.setAttribute('heartbeat_attrib', s);
+        document.dispatchEvent(ev);
+      };
+      var date_time = function(id){
+
+        date = new Date;
+        year = date.getFullYear();
+        month = date.getMonth();
+        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+        d = date.getDate();
+        day = date.getDay();
+        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        h = date.getHours();
+        if(h<10)
+        {
+                h = "0"+h;
+        }
+        m = date.getMinutes();
+        if(m<10)
+        {
+                m = "0"+m;
+        }
+        s = date.getSeconds();
+        if(s<10)
+        {
+                s = "0"+s;
+        }
+        result = ''+days[day]+' '+months[month]+' '+d+' '+year+' '+h+':'+m+':'+s;
+        document.getElementById(id).innerHTML = result;
+        setTimeout('date_time("'+id+'");','1000');
+        return true;
+      }
+      window.onload = date_time('date_time')
+    </script>
+    <div id="heartbeat_msg_wrap"></div>
+  </body>
+
+</html>

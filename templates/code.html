@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Dean McGinn">
+    <title>National Lottery - Dean McGinn</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/base.css">
+
+
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{{ url_for('home') }}">National Lottery</a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('play') }}">Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('code') }}">Code Page</a>
+            </li>
+              <li class="nav-item">
+                  <span class="nav-link" id="date_time"></span>
+              </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0" method="get" action="http://www.google.co.uk/search?hl=en-GB&source=hp&q=">
+            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Google Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+
+      <div class="container" style="margin-top:80px;">
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+
+<div class="common all" style="display: block;">
+  <h2>Python</h2>
+  <pre><code class="python hljs">class NationalBingo(object):
+    win_list = []
+    player_nums = []
+    win_choice = []
+    player_select = []
+    bonus_win = 0
+    player_bonus = 0
+    matching_numbers = []
+    player_html_elements = []
+    win_html_elements = []
+    match_html_elements = []
+
+    node_map = {
+        'grey':     [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        'blue':     [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+        'pink':     [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+        'green':    [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+        'yellow':   [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+    }
+
+    html_nodes = {
+        'grey': '&lt;span class=&quot;dot grey&quot;&gt;&lt;span class=&quot;inner-dot&quot;&gt;&lt;h2&gt;{}&lt;/h2&gt;&lt;/span&gt;&lt;/span&gt;',
+        'blue': '&lt;span class=&quot;dot blue&quot;&gt;&lt;span class=&quot;inner-dot&quot;&gt;&lt;h2&gt;{}&lt;/h2&gt;&lt;/span&gt;&lt;/span&gt;',
+        'pink': '&lt;span class=&quot;dot pink&quot;&gt;&lt;span class=&quot;inner-dot&quot;&gt;&lt;h2&gt;{}&lt;/h2&gt;&lt;/span&gt;&lt;/span&gt;',
+        'green': '&lt;span class=&quot;dot green&quot;&gt;&lt;span class=&quot;inner-dot&quot;&gt;&lt;h2&gt;{}&lt;/h2&gt;&lt;/span&gt;&lt;/span&gt;',
+        'yellow': '&lt;span class=&quot;dot yellow&quot;&gt;&lt;span class=&quot;inner-dot&quot;&gt;&lt;h2&gt;{}&lt;/h2&gt;&lt;/span&gt;&lt;/span&gt;'
+    }
+
+    def __doc__(self):
+        return '''
+                Initialisation:
+                    -First we need to reset the last game. We do this by setting the variables to
+                     their respective empty default data types.
+                    -Next we create two lists of numbers 1-49
+                    -After that we take a "random.sample" of both of these lists created in previous step.
+                     We then have 1. A list of the winning numbers and 2. A list of numbers selected
+                     randomly on behalf of the player. These numbers CANNOT appear twice in any list, ever.
+                    -We also select the bonus numbers. The winning bonus number and they players bonus number.
+                     Utilises a similar function, however this may duplicate the numbers **psuedo** framework
+                     for bonus ball, which is not yet implemented in the game.
+                    -Next we enumerate the list of numbers selected for the player, this built-in returns two values,
+                     the index and the value of that index. We check of the number (v) is present in the winning
+                     numbers list and append v to the matching numbers list.
+                    -I created a function that writes the relevant HTML elements based on the numbers and colors.
+
+                Functions:
+                    -print_out()
+                        Used in the early stages to verify numbers and uniqueness of numbers etc.
+
+                    -html_output()
+                        Iterates through lists and matches numbers to colors and then colors to html templates
+
+                    -home()
+                        This is a flask route. On the website it's the welcome page.
+
+                    -play()
+                        This is a flask route. On the website, it's the page where you play a game.
+                '''
+
+
+    def __init__(self):
+        self.win_choice = []
+        self.player_select = []
+        self.bonus_win = 0
+        self.player_bonus = 0
+        self.matching_numbers = []
+        self.html_elements = []
+        self.player_html_elements = []
+        self.win_html_elements = []
+        self.match_html_elements = []
+
+
+        self.win_list = [x+1 for x in range(49)]
+        self.player_nums = [x+1 for x in range(49)]
+        self.win_choice = random.sample(self.win_list, 6)
+        self.player_select = random.sample(self.player_nums, 6)
+        self.bonus_win = random.choice(self.win_list)
+        self.player_bonus = random.choice(self.win_list)
+
+
+        for i, v in enumerate(self.player_select):
+            if v in self.win_choice:
+                self.matching_numbers.append(v)
+
+        self.html_output()
+
+
+    def print_out(self):
+        print(sorted(self.win_choice))
+        print(sorted(self.player_select))
+        print(self.bonus_win)
+        print(self.player_bonus)
+        print(sorted(self.matching_numbers))
+
+
+    def html_output(self):
+        for x in sorted(self.player_select):
+            for y, z in self.node_map.items():
+                if x in z:
+                    self.player_html_elements.append(self.html_nodes[y].format(str(x)))
+        for x in sorted(self.win_choice):
+            for y, z in self.node_map.items():
+                if x in z:
+                    self.win_html_elements.append(self.html_nodes[y].format(str(x)))
+        for x in sorted(self.matching_numbers):
+            for y, z in self.node_map.items():
+                if x in z:
+                    self.match_html_elements.append(self.html_nodes[y].format(str(x)))
+
+
+@app.route('/')
+def home():
+    return render_template('home.html', nb=NationalBingo())
+
+
+@app.route('/play')
+def play():
+    return render_template('play.html', nb=NationalBingo())
+
+
+@app.route('/code')
+def code():
+    return render_template('code.html')
+</code></pre>
+</div>
+</div>
+
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Designed by Dean McGinn</span>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      function d_log(s) {
+        var ev = document.createEvent('events');
+        ev.initEvent('heartbeat_log', true, false);
+        document.body.setAttribute('heartbeat_attrib', s);
+        document.dispatchEvent(ev);
+      };
+      var date_time = function(id){
+
+        date = new Date;
+        year = date.getFullYear();
+        month = date.getMonth();
+        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+        d = date.getDate();
+        day = date.getDay();
+        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        h = date.getHours();
+        if(h<10)
+        {
+                h = "0"+h;
+        }
+        m = date.getMinutes();
+        if(m<10)
+        {
+                m = "0"+m;
+        }
+        s = date.getSeconds();
+        if(s<10)
+        {
+                s = "0"+s;
+        }
+        result = ''+days[day]+' '+months[month]+' '+d+' '+year+' '+h+':'+m+':'+s;
+        document.getElementById(id).innerHTML = result;
+        setTimeout('date_time("'+id+'");','1000');
+        return true;
+      }
+      window.onload = date_time('date_time')
+    </script>
+    <div id="heartbeat_msg_wrap"></div>
+  </body>
+
+</html>

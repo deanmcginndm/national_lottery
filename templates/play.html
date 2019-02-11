@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Dean McGinn">
+    <title>National Lottery - Dean McGinn</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{{ url_for('home') }}">National Lottery</a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('play') }}">Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('code') }}">Code Page</a>
+            </li>
+              <li class="nav-item">
+                  <span class="nav-link" id="date_time"></span>
+              </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0" method="get" action="http://www.google.co.uk/search?hl=en-GB&source=hp&q=">
+            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Google Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="flex-shrink-0">
+
+      <div class="container" style="margin-top:0px;">
+          <br>
+          <h1 class="mt-5 display-4">Welcome to the National Lottery!</h1>
+          <hr>
+          <h2 class="mt-6 display-5">This rounds winning numbers are:</h2>
+          <ul>
+            <li class="num-list">
+                {% for x in nb.win_html_elements %}
+                    {{ x|safe }}
+                {% endfor %}
+            </li>
+          </ul>
+          <hr>
+          <h2 class="mt-6 display-5">Check your numbers:</h2>
+          <a href="#">
+            <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal">Check Now!</button>
+          </a>
+          <ul>
+            <li class="num-list">
+                {% for x in nb.player_html_elements %}
+                    {{ x|safe }}
+                {% endfor %}
+            </li>
+          </ul>
+
+      </div>
+
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Designed by Dean McGinn</span>
+      </div>
+    </footer>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {% if nb.match_html_elements == [] %}
+                Bad luck!
+            {% else %}
+                Winner! <i class="fas fa-gem"></i>
+            {% endif %}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% if nb.match_html_elements != [] %}
+              {% if nb.match_html_elements|length == 1 %}
+                  <h4 style="text-align: center;">Congratulations!</h4>
+                  <h4 style="text-align: center;">You matched {{ nb.match_html_elements|length }} number!</h4>
+              {% else %}
+                  <h4 style="text-align: center;">Congratulations!</h4>
+                  <h4 style="text-align: center;">You matched {{ nb.match_html_elements|length }} numbers!</h4>
+              {% endif %}
+              <ul>
+                  <li class="num-list">
+                      {% for x in nb.match_html_elements %}
+                          {{ x|safe }}
+                      {% endfor %}
+                  </li>
+              </ul>
+          {% else %}
+              <h3 style="text-align: center;">Bad luck! No matches this time.</h3>
+          {% endif %}
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a href="{{ url_for('play') }}">
+            <button type="button" class="btn btn-primary">Play again?</button>
+          </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      function d_log(s) {
+        var ev = document.createEvent('events');
+        ev.initEvent('heartbeat_log', true, false);
+        document.body.setAttribute('heartbeat_attrib', s);
+        document.dispatchEvent(ev);
+      };
+      var date_time = function(id){
+
+        date = new Date;
+        year = date.getFullYear();
+        month = date.getMonth();
+        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+        d = date.getDate();
+        day = date.getDay();
+        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        h = date.getHours();
+        if(h<10)
+        {
+                h = "0"+h;
+        }
+        m = date.getMinutes();
+        if(m<10)
+        {
+                m = "0"+m;
+        }
+        s = date.getSeconds();
+        if(s<10)
+        {
+                s = "0"+s;
+        }
+        result = ''+days[day]+' '+months[month]+' '+d+' '+year+' '+h+':'+m+':'+s;
+        document.getElementById(id).innerHTML = result;
+        setTimeout('date_time("'+id+'");','1000');
+        return true;
+      }
+      window.onload = date_time('date_time')
+    </script>
+    <div id="heartbeat_msg_wrap"></div>
+  </body>
+
+</html>
